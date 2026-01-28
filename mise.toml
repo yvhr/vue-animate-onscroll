@@ -1,2 +1,18 @@
 [tools]
 node = "22"
+
+[tasks.publish]
+description = "Bump version, test, commit, tag, and push to trigger publish"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+VERSION="${1:?Usage: mise run publish <version>}"
+npm version "$VERSION" --no-git-tag-version
+npm ci
+npm test
+git add package.json package-lock.json
+git commit -m "chore(release): v$VERSION"
+git tag "v$VERSION"
+git push && git push --tags
+echo "Released v$VERSION — publish workflow will run on GitHub"
+"""
