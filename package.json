@@ -1,16 +1,24 @@
 {
   "name": "vue-animate-onscroll",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "A simple Vue directive that animates elements as they scroll into view.",
-  "main": "lib/vue-animate-onscroll.cjs.js",
-  "module": "lib/vue-animate-onscroll.es.js",
-  "jsnext:main": "lib/vue-animate-onscroll.es.js",
+  "type": "module",
+  "main": "./dist/vue-animate-onscroll.umd.cjs",
+  "module": "./dist/vue-animate-onscroll.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-animate-onscroll.js",
+      "require": "./dist/vue-animate-onscroll.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "clean": "rimraf lib",
-    "build": "npm run clean && rollup --config rollup.config.js",
-    "test": "npm run build && jest",
-    "deploy": "npm run test && npm version patch && npm publish",
-    "prepublishOnly": "git push --follow-tags"
+    "build": "vite build",
+    "test": "vitest run",
+    "dev": "vite --config vite.config.ts demo",
+    "build:demo": "vite build --config vite.demo.config.ts",
+    "prepublishOnly": "npm test && npm run build"
   },
   "author": "yev",
   "repository": {
@@ -19,16 +27,20 @@
   },
   "keywords": [
     "vue",
+    "vue3",
     "scroll",
     "animate",
     "reveal"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
   "devDependencies": {
-    "jest": "^23.6.0",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.66.4",
-    "rollup-plugin-terser": "^3.0.0"
+    "typescript": "^5.3.3",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vue": "^3.5.0"
   }
 }

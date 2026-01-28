@@ -1,84 +1,83 @@
 # vue-animate-onscroll
-A simple Vue directive that animates elements as they scroll into view.
+A simple Vue 3 directive that animates elements as they scroll into view.
 
 ## Installation
 
 ```sh
 npm install vue-animate-onscroll
-# or
-yarn add vue-animate-onscroll
 ```
 
 ## Setup
-Import to your `Vue` application
-```javascript
-import Vue from 'vue'
+```typescript
+import { createApp } from 'vue'
 import VueAnimateOnScroll from 'vue-animate-onscroll'
 
-Vue.use(VueAnimateOnScroll)
+const app = createApp(App)
+app.use(VueAnimateOnScroll)
+app.mount('#app')
 ```
 
 ## Usage
-For demo purposes, let's use [animate.css](https://daneden.github.io/animate.css/),
-a css animation library but using your own custom CSS animations would work the same way as well.
+For demo purposes, let's use [animate.css](https://animate.style/),
+a CSS animation library, but using your own custom CSS animations would work the same way.
 
-Import `animate.css` anyway you like. For demo purposes, in your `index.html`
+Import `animate.css` however you like. For example, in your `index.html`:
 ```html
 <head>
-  <!-- some other stuff -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 ```
 
-Pass the desired class as a string literal (in single quotes) in your `Vue` template:
+Pass the desired class as a string literal (in single quotes) in your Vue template:
 ```html
-<div v-animate-onscroll="'animated flip'">Animate me once upon scroll</div>
+<div v-animate-onscroll="'animate__animated animate__flip'">Animate me once upon scroll</div>
 ```
 
 ### Offset
-To trigger the animation with an offset at the top and the bottom you can add an `data-animate-onscroll-offset` attribute like:
+To trigger the animation with an offset at the top and the bottom, add a `data-animate-onscroll-offset` attribute:
 ```html
-<div v-animate-onscroll="'animated flip'" data-animate-onscroll-offset="100">Animate me upon scroll with an offset of 100px</div>
+<div v-animate-onscroll="'animate__animated animate__flip'" data-animate-onscroll-offset="100">Animate me with 100px offset</div>
 ```
 
 ### Repeat Modifier
-Note that by default the animation will only trigger once: the first time the element scrolled into view. If you want to repeat the animation everytime it was scrolled into view, use the `repeat` modifier:
+By default the animation triggers once. To repeat it every time the element scrolls into view, use the `repeat` modifier:
 ```html
-<div v-animate-onscroll.repeat="'animated flip'">Animate me upon scroll forever</div>
+<div v-animate-onscroll.repeat="'animate__animated animate__flip'">Animate me forever</div>
 ```
 
 ### In-/Out-Animations
-For an infinity in- and out-animation on scroll you can use `in` and `out` keys. For the best result use a combination with `data-animate-onscroll-offset`:
+For in and out animations on scroll, use `in` and `out` keys:
 ```html
-<div v-animate-onscroll.repeat="{in: 'animated flipInX', out: 'animated flipOutX'}" data-animate-onscroll-offset="100">Animate me upon scroll forever</div>
+<div v-animate-onscroll.repeat="{in: 'animate__animated animate__flipInX', out: 'animate__animated animate__flipOutX'}" data-animate-onscroll-offset="100">Flip in and out</div>
 ```
 
 ### Scroll Direction
-It's also possible to animate only on a specific scroll direction by passing in an object as the value. In the following example, the animation will only trigger the first time you scroll down on the element.
-
+Animate only on a specific scroll direction:
 ```html
-<div v-animate-onscroll="{down: 'animated flip'}">Animate me once upon scroll down</div>
-```
-On upward scroll:
-```html
-<div v-animate-onscroll="{up: 'animated rotateOut'}">Animate me once upon scroll up</div>
+<div v-animate-onscroll="{down: 'animate__animated animate__flip'}">Animate once on scroll down</div>
+<div v-animate-onscroll="{up: 'animate__animated animate__rotateOut'}">Animate once on scroll up</div>
 ```
 
-If you want to repeat the animation *everytime you scroll down* to the element add the `repeat` modifier:
-
+With repeat:
 ```html
-<div v-animate-onscroll.repeat="{down: 'animated flip'}">Animate me everytime you scroll down on me</div>
+<div v-animate-onscroll.repeat="{down: 'animate__animated animate__flip'}">Animate every scroll down</div>
 ```
 
 ### Multiple animations
-Or use two different animations for each scroll direction:
+Use two different animations for each scroll direction:
 ```html
-<div v-animate-onscroll="{down: 'animated flip', up: 'animated rotateOut' }">Animate me upon scroll forever</div>
+<div v-animate-onscroll="{down: 'animate__animated animate__flip', up: 'animate__animated animate__rotateOut'}">Different animations per direction</div>
 ```
-Note that by providing both `up` and `down` directions, the `repeat` modifier is implicitly in effect.
+Note: providing both `up` and `down` implicitly enables repeating.
 
-## Demo
-Live demo [here](https://vue-animate-onscroll.netlify.com/).
+## Development
+
+```sh
+npm install
+npm run dev    # starts demo page
+npm run test   # runs tests
+npm run build  # builds library
+```
 
 ## License
 
