@@ -1,6 +1,6 @@
 # vue-animate-onscroll
 
-[![Publish](https://github.com/josephharveyangeles/vue-animate-onscroll/actions/workflows/publish.yml/badge.svg)](https://github.com/josephharveyangeles/vue-animate-onscroll/actions/workflows/publish.yml)
+[![Publish](https://github.com/yvhr/vue-animate-onscroll/actions/workflows/publish.yml/badge.svg)](https://github.com/yvhr/vue-animate-onscroll/actions/workflows/publish.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/53a7ee61-bc19-43cf-9544-02cac57ff3fd/deploy-status)](https://app.netlify.com/projects/vue-animate-onscroll/deploys)
 
 A simple Vue 3 directive that animates elements as they scroll into view.
