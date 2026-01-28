@@ -39,8 +39,8 @@ jobs:
       - name: Publish to GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-          echo "@josephharveyangeles:registry=https://npm.pkg.github.com" >> ~/.npmrc
-          sed -i 's/"name": "vue-animate-onscroll"/"name": "@josephharveyangeles\/vue-animate-onscroll"/' package.json
+          echo "@yvhr:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          sed -i 's/"name": "vue-animate-onscroll"/"name": "@yvhr\/vue-animate-onscroll"/' package.json
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
