@@ -1,10 +1,12 @@
-const { ScrollAnimate } = require('../lib/vue-animate-onscroll.cjs')
-const createFixture = require('./utils')
+import { describe, test, expect, beforeEach, vi } from 'vitest'
+import ScrollAnimate from '../src/scroll-animate'
+import type { ScrollAnimateInstance } from '../src/scroll-animate'
+import createFixture from './utils'
 
-describe('ScrollAnimate', function() {
-  let scrollAnimate = null
-  
-  beforeEach(() => scrollAnimate = ScrollAnimate() )
+describe('ScrollAnimate', function () {
+  let scrollAnimate: ScrollAnimateInstance
+
+  beforeEach(() => { scrollAnimate = ScrollAnimate() })
 
   describe('General tests', () => {
     test('should not remove existing classes', () => {
@@ -68,7 +70,7 @@ describe('ScrollAnimate', function() {
       fixture.scrollUp(true)
       expect(fixture.getClassName()).toEqual(animationClass)
     })
-    
+
     test('should not toggle animation when repeat is off', () => {
       const fixture = createFixture(
         scrollAnimate, { animationClass, repeat: false }
@@ -107,7 +109,7 @@ describe('ScrollAnimate', function() {
   })
 
   describe('In animation', () => {
-    const animationClass = {in: 'flip'}
+    const animationClass = { in: 'flip' }
     const offset = 100
 
     test('should add animation classes', () => {
@@ -153,7 +155,7 @@ describe('ScrollAnimate', function() {
       fixture.scrollUp(true)
       expect(fixture.getClassName()).toEqual(animationClass.in)
     })
-    
+
     test('should not toggle animation when repeat is off', () => {
       const fixture = createFixture(
         scrollAnimate, { animationClass, repeat: false }
@@ -192,10 +194,10 @@ describe('ScrollAnimate', function() {
   })
 
   describe('Out animation', () => {
-    const animationClass = {out: 'flipOut'}
+    const animationClass = { out: 'flipOut' }
 
     test('should print wrong parameter usage warning', () => {
-      jest.spyOn(console, 'warn').mockImplementation()
+      vi.spyOn(console, 'warn').mockImplementation(() => {})
       const fixture = createFixture(scrollAnimate, { animationClass })
 
       expect(fixture.getClassName()).toBeFalsy()
@@ -209,7 +211,7 @@ describe('ScrollAnimate', function() {
   })
 
   describe('InOut animation', () => {
-    const animationClass = {in: 'flip', out: 'flipOut'}
+    const animationClass = { in: 'flip', out: 'flipOut' }
     const offset = 100
 
     test('should add animation classes', () => {
@@ -256,7 +258,7 @@ describe('ScrollAnimate', function() {
       expect(fixture.getClassName()).toEqual(animationClass.in)
     })
 
-    test('should not toggle animation when repeat is off', () => {
+    test('should not toggle animation when repeat is on', () => {
       const fixture = createFixture(
         scrollAnimate, { animationClass, repeat: false }
       )
@@ -294,7 +296,7 @@ describe('ScrollAnimate', function() {
   })
 
   describe('Downwards animation', () => {
-    const animationClass = {down: 'rotate'}
+    const animationClass = { down: 'rotate' }
 
     test('should apply animation on scroll once', () => {
       const fixture = createFixture(scrollAnimate, { animationClass })
@@ -372,7 +374,7 @@ describe('ScrollAnimate', function() {
   })
 
   describe('Bi-directional animation', () => {
-    const animationClass = {up: 'zoomIn', down: 'zoomOut'}
+    const animationClass = { up: 'zoomIn', down: 'zoomOut' }
 
     test('should toggle appropriate direction', () => {
       const fixture = createFixture(scrollAnimate, { animationClass })
@@ -408,5 +410,4 @@ describe('ScrollAnimate', function() {
       expect(fixture.getClassName()).toBe(animationClass.down)
     })
   })
-  
 })

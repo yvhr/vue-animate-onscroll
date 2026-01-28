@@ -2,10 +2,22 @@
 src
 
 # config
-rollup.config.js
+vite.config.ts
+tsconfig.json
 yarn.lock
 
 # tests
 tests
 coverage
-jest.config.js
+
+# demo
+demo
+demo-dist
+netlify.toml
+vite.demo.config.ts
+
+# ci/misc
+.github
+.gitignore
+.claude
+mise.toml
